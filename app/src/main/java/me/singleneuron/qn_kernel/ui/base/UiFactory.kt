@@ -20,19 +20,16 @@
  * <https://github.com/ferredoxin/QNotified/blob/master/LICENSE.md>.
  */
 
-package me.singleneuron.qn_kernel.ui
+package me.singleneuron.qn_kernel.ui.base
 
 import android.app.Activity
 import android.content.Intent
 import androidx.preference.Preference
 import me.singleneuron.qn_kernel.data.hostInfo
-import me.singleneuron.qn_kernel.ui.base.UiCategory
-import me.singleneuron.qn_kernel.ui.base.UiDescription
-import me.singleneuron.qn_kernel.ui.base.UiItem
 
 class UiClickToActivityItemFactory: UiItem {
 
-    override lateinit var preference: Preference
+    override lateinit var preference: UiPreference
 
     lateinit var title: String
     var summary: String? = null
@@ -40,13 +37,12 @@ class UiClickToActivityItemFactory: UiItem {
     lateinit var onClickListener: Preference.OnPreferenceClickListener
 
     fun create() {
-        preference = Preference(hostInfo.application).apply {
-            this.title = title
-            this.summary = summary
-            this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                hostInfo.application.startActivity(Intent(hostInfo.application, activity))
-                true
-            }
+        preference = UiPreference()
+        preference.title = this.title
+        preference.summary = this.summary
+        preference.onClickListener = {
+            hostInfo.application.startActivity(Intent(hostInfo.application, activity))
+            true
         }
     }
 

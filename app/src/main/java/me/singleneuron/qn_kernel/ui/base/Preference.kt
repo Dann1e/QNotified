@@ -20,22 +20,22 @@
  * <https://github.com/ferredoxin/QNotified/blob/master/LICENSE.md>.
  */
 
-package me.singleneuron.util
+package me.singleneuron.qn_kernel.ui.base
 
-import me.singleneuron.qn_kernel.ui.base.UiCategory
-import me.singleneuron.qn_kernel.ui.base.UiCategoryFactory
-import me.singleneuron.qn_kernel.ui.base.UiClickToActivityItemFactory
-import me.singleneuron.qn_kernel.ui.base.UiItem
-
-fun uiClickToActivityItem(init: UiClickToActivityItemFactory.()->Unit): Pair<String,UiItem> {
-    val uiClickToActivityItemFactory = UiClickToActivityItemFactory()
-    uiClickToActivityItemFactory.init()
-    uiClickToActivityItemFactory.create()
-    return Pair(uiClickToActivityItemFactory.title,uiClickToActivityItemFactory)
+open class UiPreference {
+    lateinit var title: String
+    var summary: String? = null
+    var onClickListener: ()->Boolean = {true}
 }
 
-fun uiCategory(init: UiCategory.()->Unit): Pair<String,UiCategory> {
-    val uiCategory = UiCategoryFactory()
-    uiCategory.init()
-    return Pair(uiCategory.name,uiCategory)
+abstract class UiChangeablePreference<T> {
+    var onPreferenceChangeListener: (T?)->Boolean = {true}
+    var value: T? = null
+    set(value) {
+        onPreferenceChangeListener(value)
+    }
+
 }
+
+class UiSwitchPreference: UiChangeablePreference<Boolean>()
+

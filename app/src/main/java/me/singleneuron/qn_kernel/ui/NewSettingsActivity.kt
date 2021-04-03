@@ -40,6 +40,7 @@ class NewSettingsActivity : IphoneTitleBarActivityCompat() {
         super.doOnCreate(bundle)
 
         binding = ActivityNewSettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         changeFragment(UiTable)
 

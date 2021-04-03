@@ -22,8 +22,6 @@
 
 package me.singleneuron.qn_kernel.ui.base
 
-import androidx.preference.Preference
-
 interface UiDescription
 
 interface UiGroup:UiDescription {
@@ -38,7 +36,7 @@ interface UiCategory: UiGroup {
 }
 
 interface UiItem: UiDescription {
-    val preference: Preference
+    val preference: UiPreference
     val preferenceLocate: Array<String>?
         get() = null
 }

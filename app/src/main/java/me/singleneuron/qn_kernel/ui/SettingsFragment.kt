@@ -65,7 +65,7 @@ class SettingsFragment : Fragment() {
             } else if (uiDescription is UiItem) {
                 try {
                     viewGroup.addView(newListItemButton(activity, uiDescription.preference.title, uiDescription.preference.summary, null) {
-                        uiDescription.preference.onPreferenceClickListener.onPreferenceClick(null)
+                        uiDescription.preference.onClickListener()
                     })
                 } catch (e:Exception) {
                     Utils.log(e)
