@@ -32,8 +32,7 @@ import me.singleneuron.qn_kernel.ui.base.UiCategory
 import me.singleneuron.qn_kernel.ui.base.UiGroup
 import me.singleneuron.qn_kernel.ui.base.UiItem
 import me.singleneuron.qn_kernel.ui.base.UiScreen
-import nil.nadph.qnotified.ui.ViewBuilder.newListItemButton
-import nil.nadph.qnotified.ui.ViewBuilder.subtitle
+import nil.nadph.qnotified.ui.ViewBuilder.*
 import nil.nadph.qnotified.util.Utils
 
 class SettingsFragment : Fragment() {
@@ -60,7 +59,7 @@ class SettingsFragment : Fragment() {
         for (uiDescription in uiGroup.contains.values) {
             Utils.logd("Adding: $uiDescription")
             if (uiDescription is UiCategory) {
-                viewGroup.addView(subtitle(activity, uiDescription.name))
+                viewGroup.addView(largeSubtitle(activity, uiDescription.name))
                 addViewInUiGroup(uiDescription, viewGroup)
             } else if (uiDescription is UiItem) {
                 try {
